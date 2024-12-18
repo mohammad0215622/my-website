@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Admin Panel</h1>
+    </div>
+  </header>
+
+  <section class="container">
+    <h2>Manage Products</h2>
+
+    <!-- Add New Product -->
+    <form id="add-product-form">
+      <input type="text" id="product-name" placeholder="Product Name" required>
+      <input type="text" id="product-category" placeholder="Category" required>
+      <input type="number" id="product-price" placeholder="Price" required>
+      <input type="url" id="product-image" placeholder="Image URL" required>
+      <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Product List -->
+    <div id="admin-product-list">
+      <h3>Existing Products:</h3>
+      <ul id="product-list-admin"></ul>
+    </div>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>
