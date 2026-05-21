@@ -1,0 +1,215 @@
+/* Boot Screen */
+#boot-screen {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.boot-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.boot-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boot-spinner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid transparent;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+.windows-logo {
+    animation: fadeInScale 0.8s ease-out;
+}
+
+.boot-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.boot-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: bootDot 1.5s ease-in-out infinite;
+}
+
+.boot-dots span:nth-child(1) { animation-delay: 0s; }
+.boot-dots span:nth-child(2) { animation-delay: 0.15s; }
+.boot-dots span:nth-child(3) { animation-delay: 0.3s; }
+.boot-dots span:nth-child(4) { animation-delay: 0.45s; }
+.boot-dots span:nth-child(5) { animation-delay: 0.6s; }
+
+.boot-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+@keyframes bootDot {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Login Screen */
+#login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.login-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a1628 0%, #1a0a3e 50%, #0a2848 100%);
+    filter: blur(0px);
+}
+
+.login-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.login-time {
+    font-size: 72px;
+    font-weight: 200;
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.login-date {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 40px;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: var(--blur);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 320px;
+}
+
+.login-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: rgba(255,255,255,0.8);
+}
+
+.login-username {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.login-input-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.login-input-group input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.login-input-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3);
+}
+
+.login-submit {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-submit:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.login-error {
+    color: var(--error);
+    font-size: 13px;
+}
+
+.login-hint {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}

@@ -1,0 +1,146 @@
+/* Window System */
+.window {
+    position: absolute;
+    min-width: 400px;
+    min-height: 300px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+    animation: windowOpen 0.2s ease;
+}
+
+.window.focused {
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 120, 212, 0.3);
+}
+
+[data-theme="cyberpunk"] .window.focused {
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+}
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 48px) !important;
+    border-radius: 0;
+    border: none;
+}
+
+.window.minimized {
+    display: none;
+}
+
+/* Window Title Bar */
+.window-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 0 8px 0 12px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.window-titlebar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.window-titlebar-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.window-titlebar-title {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 400;
+    user-select: none;
+}
+
+.window-titlebar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.window-btn {
+    width: 32px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.window-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.window-btn.close:hover {
+    background: var(--error);
+    color: #fff;
+}
+
+/* Window Content */
+.window-content {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+    position: relative;
+}
+
+/* Resize Handle */
+.window-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+}
+
+/* Window animations */
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes windowClose {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
