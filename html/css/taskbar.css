@@ -1,0 +1,201 @@
+/* Taskbar */
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: rgba(22, 27, 34, 0.85);
+    backdrop-filter: var(--blur);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    z-index: 800;
+}
+
+[data-theme="light"] .taskbar {
+    background: rgba(243, 243, 243, 0.9);
+}
+
+[data-theme="cyberpunk"] .taskbar {
+    background: rgba(10, 0, 20, 0.9);
+    border-top-color: var(--primary);
+    box-shadow: 0 -2px 20px rgba(255, 0, 255, 0.1);
+}
+
+.taskbar-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.taskbar-start {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.taskbar-start:hover {
+    background: var(--bg-hover);
+}
+
+.taskbar-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 200px;
+}
+
+.taskbar-search i {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.taskbar-search input {
+    border: none;
+    background: none;
+    color: var(--text-primary);
+    font-size: 12px;
+    outline: none;
+    width: 100%;
+}
+
+.taskbar-center {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.taskbar-app-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-secondary);
+    transition: var(--transition);
+    position: relative;
+}
+
+.taskbar-app-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.taskbar-app-btn.active {
+    color: var(--text-primary);
+}
+
+.taskbar-app-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.taskbar-app-btn.minimized::after {
+    width: 8px;
+}
+
+.taskbar-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.taskbar-tray {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.tray-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.tray-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.taskbar-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.taskbar-clock:hover {
+    background: var(--bg-hover);
+}
+
+.clock-time {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.clock-date {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.taskbar-notification {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.taskbar-notification:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
