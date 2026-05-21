@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>FiveM Computer</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/boot.css">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/taskbar.css">
+    <link rel="stylesheet" href="css/windows.css">
+    <link rel="stylesheet" href="css/apps.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="computer-container" class="hidden">
+        <!-- Boot Screen -->
+        <div id="boot-screen" class="screen">
+            <div class="boot-content">
+                <div class="boot-logo">
+                    <div class="boot-spinner"></div>
+                    <svg class="windows-logo" viewBox="0 0 88 88" width="80" height="80">
+                        <rect x="0" y="0" width="40" height="40" fill="#00adef"/>
+                        <rect x="44" y="0" width="40" height="40" fill="#7fba00"/>
+                        <rect x="0" y="44" width="40" height="40" fill="#f25022"/>
+                        <rect x="44" y="44" width="40" height="40" fill="#ffb900"/>
+                    </svg>
+                </div>
+                <div class="boot-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <p class="boot-text">Starting up...</p>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen hidden">
+            <div class="login-bg"></div>
+            <div class="login-content">
+                <div class="login-time" id="login-time">12:00</div>
+                <div class="login-date" id="login-date">Thursday, January 1</div>
+                <div class="login-card">
+                    <div class="login-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h2 class="login-username">User</h2>
+                    <div class="login-input-group">
+                        <input type="password" id="login-password" placeholder="PIN / Password" autocomplete="off">
+                        <button id="login-btn" class="login-submit">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <p class="login-error hidden" id="login-error">Incorrect password</p>
+                    <p class="login-hint">Default: 1234</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop -->
+        <div id="desktop-screen" class="screen hidden">
+            <div class="desktop-wallpaper" id="desktop-wallpaper"></div>
+
+            <!-- Desktop Icons -->
+            <div class="desktop-icons" id="desktop-icons"></div>
+
+            <!-- Windows Container -->
+            <div class="windows-container" id="windows-container"></div>
+
+            <!-- Start Menu -->
+            <div class="start-menu hidden" id="start-menu">
+                <div class="start-menu-header">
+                    <input type="text" class="start-search" placeholder="Search apps...">
+                </div>
+                <div class="start-menu-apps" id="start-menu-apps"></div>
+                <div class="start-menu-footer">
+                    <button class="start-power-btn" id="power-btn">
+                        <i class="fas fa-power-off"></i>
+                        <span>Shut Down</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Taskbar -->
+            <div class="taskbar" id="taskbar">
+                <div class="taskbar-left">
+                    <button class="taskbar-start" id="start-btn">
+                        <svg viewBox="0 0 88 88" width="20" height="20">
+                            <rect x="0" y="0" width="40" height="40" fill="#00adef"/>
+                            <rect x="44" y="0" width="40" height="40" fill="#7fba00"/>
+                            <rect x="0" y="44" width="40" height="40" fill="#f25022"/>
+                            <rect x="44" y="44" width="40" height="40" fill="#ffb900"/>
+                        </svg>
+                    </button>
+                    <div class="taskbar-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search..." id="taskbar-search-input">
+                    </div>
+                </div>
+                <div class="taskbar-center" id="taskbar-apps"></div>
+                <div class="taskbar-right">
+                    <div class="taskbar-tray">
+                        <button class="tray-btn" id="wifi-btn"><i class="fas fa-wifi"></i></button>
+                        <button class="tray-btn" id="volume-btn"><i class="fas fa-volume-up"></i></button>
+                        <button class="tray-btn" id="battery-btn"><i class="fas fa-battery-three-quarters"></i></button>
+                    </div>
+                    <div class="taskbar-clock" id="taskbar-clock">
+                        <span class="clock-time">12:00</span>
+                        <span class="clock-date">1/1/2024</span>
+                    </div>
+                    <button class="taskbar-notification" id="notification-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Panel -->
+            <div class="notification-panel hidden" id="notification-panel">
+                <div class="notif-header">
+                    <h3>Notifications</h3>
+                    <button class="notif-clear">Clear all</button>
+                </div>
+                <div class="notif-list" id="notif-list">
+                    <p class="notif-empty">No notifications</p>
+                </div>
+                <div class="quick-settings">
+                    <button class="qs-btn active" data-setting="wifi"><i class="fas fa-wifi"></i></button>
+                    <button class="qs-btn active" data-setting="bluetooth"><i class="fas fa-bluetooth-b"></i></button>
+                    <button class="qs-btn" data-setting="airplane"><i class="fas fa-plane"></i></button>
+                    <button class="qs-btn" data-setting="nightlight"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+            <!-- Toast Notifications -->
+            <div class="toast-container" id="toast-container"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/windows.js"></script>
+    <script src="js/apps/mdt.js"></script>
+    <script src="js/apps/bank.js"></script>
+    <script src="js/apps/browser.js"></script>
+    <script src="js/apps/files.js"></script>
+    <script src="js/apps/twitter.js"></script>
+    <script src="js/apps/cameras.js"></script>
+    <script src="js/apps/emails.js"></script>
+    <script src="js/apps/hacking.js"></script>
+    <script src="js/apps/settings.js"></script>
+    <script src="js/apps/notes.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
