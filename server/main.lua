@@ -5,7 +5,15 @@ local RateLimits = {}
 -- Framework initialization
 CreateThread(function()
     if Config.Framework == 'qbcore' then
-        QBCore = exports['qb-core']:GetCoreObject()
+        local success, result = pcall(function()
+            return exports['qb-core']:GetCoreObject()
+        end)
+        if not success then
+            success, result = pcall(function()
+                return exports['qb-core']:GetSharedObject()
+            end)
+        end
+        QBCore = result
     elseif Config.Framework == 'esx' then
         ESX = exports['es_extended']:getSharedObject()
     end
